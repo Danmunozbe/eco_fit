@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'MainPages/Laundry.dart';
+import 'MainPages/armario.dart';
+import 'MainPages/pagina_home.dart';
+import 'MainPages/perfil.dart';
+//import 'dart:math';
 void main(){
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);  
@@ -43,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         //floating action button position to center
 
         bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
-          color:const Color.fromARGB(255, 88, 255, 82),
+          color:Color.fromARGB(185, 206, 209, 8),
           shape: const CircularNotchedRectangle(), //shape of notch
           notchMargin: 5, //notche margin between floating button and bottom appbar
           child: Row( //children inside bottom appbar
@@ -63,46 +67,10 @@ class _MyAppState extends State<MyApp> {
   }  
 }
 
-class PaginaHome extends StatelessWidget {
-  const PaginaHome({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Home",style: TextStyle(fontSize: 30),),
-    );
-  }
-}
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile",style: TextStyle(fontSize: 30),),
-    );
-  }
-}
-class Laundry extends StatelessWidget {
-  const Laundry({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Laundry",style: TextStyle(fontSize: 30),),
-    );
-  }
-}
-class Armario extends StatelessWidget {
-  const Armario({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Armario",style: TextStyle(fontSize: 30),),
-    );
-  }
-}
 
 
