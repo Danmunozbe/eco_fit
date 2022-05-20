@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:eco_fit/EntryPage/Wrapper.dart';
 import 'package:eco_fit/Servicios/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
