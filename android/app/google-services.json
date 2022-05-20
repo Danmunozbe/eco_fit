@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1019417478911",
+    "project_id": "eco-fit-31164",
+    "storage_bucket": "eco-fit-31164.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019417478911:android:0d0d8b2d5149294d0b2eca",
+        "android_client_info": {
+          "package_name": "com.example.eco_fit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019417478911-umi5tgllmg2934hmcushdonkbauftqqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP7E6uSXFwJQyk4ZiniKOZOsGgMyyhj1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019417478911-umi5tgllmg2934hmcushdonkbauftqqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
