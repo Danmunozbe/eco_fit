@@ -1,72 +1,36 @@
+import 'package:eco_fit/EntryPage/Wrapper.dart';
+import 'package:eco_fit/Servicios/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'MainPages/Laundry.dart';
-import 'MainPages/armario.dart';
-import 'MainPages/pagina_home.dart';
-import 'MainPages/perfil.dart';
+import 'package:provider/provider.dart';
+import 'firebase_options.dart';
+
+
 //import 'dart:math';
-void main(){
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);  
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int _paginaActual=0;
-  final List<Widget>_paginas=[
-    const PaginaHome(),
-    const Armario(),
-    const Laundry(),
-    const Profile(),
-  ];
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text("Eco-Fit"),
-          ),        
-        floatingActionButton:FloatingActionButton( //Floating action button on Scaffold
-            onPressed: (){
-               showDialog(context: context, builder: (context)=>AlertDialog(
-                 title: const Text("XDDD"),
-                 actions: [
-                   TextButton(onPressed: ()=>Navigator.pop(context), child: Text("OK lol"))
-                 ],
-                )
-               );
-            },
-            child: const Icon(Icons.add_rounded), //icon inside button
+    return MultiProvider(
+      providers: [
+        Provider<AuthServer>(create:(_)=>AuthServer(FirebaseAuth.instance),
         ),
-
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        //floating action button position to center
-
-        bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
-          color:Color.fromARGB(185, 206, 209, 8),
-          shape: const CircularNotchedRectangle(), //shape of notch
-          notchMargin: 5, //notche margin between floating button and bottom appbar
-          child: Row( //children inside bottom appbar
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(icon: const Icon(Icons.menu, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=0});},),
-              IconButton(icon: const Icon(Icons.all_inbox, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=1});},),
-              IconButton(icon: const Icon(Icons.shop, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=2});},),
-              IconButton(icon: const Icon(Icons.account_circle, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=3});},),
-            ],
-          ),
-        ),
-        body: _paginas[_paginaActual],
+        StreamProvider(create: (context)=>context.read<AuthServer>().authstatechanges, initialData: null),
+      ],
+      child: const MaterialApp(
+        home: Wrapper(),
       ),
-    ) ;
-  }  
+    );
+  }
 }
-
 
 
 
