@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
 import 'package:eco_fit/EntryPage/Wrapper.dart';
 import 'package:eco_fit/Servicios/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         Provider<AuthServer>(create:(_)=>AuthServer(FirebaseAuth.instance),
         ),
         StreamProvider(create: (context)=>context.read<AuthServer>().authstatechanges, initialData: null),
+        ChangeNotifierProvider<LogPages>(create:(_)=>LogPages()),
       ],
       child: const MaterialApp(
         home: Wrapper(),
