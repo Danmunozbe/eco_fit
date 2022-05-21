@@ -1,5 +1,6 @@
 import 'package:eco_fit/EntryPage/Home/home.dart';
 import 'package:eco_fit/EntryPage/LogIn/login.dart';
+import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //retorna home o el AuthPage dependiendo
-    final firebaseUser = context.watch<User?>();
-    return firebaseUser != null ? const Home():const SingIn();
+    final firebaseUser = Provider.of<User?>(context,listen: true);
+    return firebaseUser != null ? const Home():const Log();
   }
 }

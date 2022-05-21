@@ -1,112 +1,19 @@
-import 'package:eco_fit/Servicios/auth.dart';
+import 'package:eco_fit/EntryPage/Home/home.dart';
+import 'package:eco_fit/EntryPage/LogIn/login.dart';
+import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
+import 'package:eco_fit/EntryPage/LogIn/pages/log.dart';
+import 'package:eco_fit/EntryPage/LogIn/pages/sign.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class SingIn extends StatefulWidget {
-  const SingIn({Key? key}) : super(key: key);
-
-  @override
-  State<SingIn> createState() => _SingInState();
-}
-
-class _SingInState extends State<SingIn> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  bool _showPassword = false;
-  //final AuthServer _auth= AuthServer();
+class Log extends StatelessWidget {
+  const Log({Key? key}) : super(key: key);  
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          elevation: 0.0,
-          title: const Text("inicia o crea tu cuenta"),
-        ),
-        body: Column(children: [
-          TextField(
-            controller: emailController,
-            decoration: const InputDecoration(
-              labelText: "email",
-            ),
-          ),
-          TextField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                labelText: "password",
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _showPassword = !_showPassword;
-                    });
-                  },
-                  child: Icon(
-                    _showPassword ? Icons.visibility : Icons.visibility_off,
-                  ),
-                ),
-              ),
-              obscureText: !_showPassword),
-          Row(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthServer>().singUp(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim());
-                  },
-                  child: const Text("Sign Up")),
-                  ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthServer>().singIn(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim());
-                  },
-                  child: const Text("Sign In")),
-              
-            ],
-          ),
-        ]));
+    //retorna home o el AuthPage dependiendo
+    final actualPage = Provider.of<LogPages>(context,listen: true);
+    return (actualPage.actpage == 0) ? const LogIn():const SingUP();
   }
 }
-
-
-
-/*class PasswordFormField extends StatefulWidget {
-  final TextEditingController controller;
-
-  const PasswordFormField({
-    required Key key,
-    required this.controller,
-  })  : assert(controller != null),
-        super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _PasswordFormFieldState();
-}
-
-class _PasswordFormFieldState extends State<PasswordFormField> {
-  bool _showPassword = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      decoration: InputDecoration(
-        labelText: 'Password',
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              _showPassword = !_showPassword;
-            });
-          },
-          child: Icon(
-            _showPassword ? Icons.visibility : Icons.visibility_off,
-          ),
-        ),
-      ),
-      obscureText: !_showPassword,
-    );
-  }
-}*/
-
