@@ -1,7 +1,6 @@
 import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
 import 'package:eco_fit/Servicios/auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class SingUP extends StatelessWidget {
@@ -24,13 +23,21 @@ class SingUp extends StatefulWidget {
 }
 
 class _SingUpState extends State<SingUp> {
+  //Llave del formulario
   final _formkey = GlobalKey<FormState>();
+
+  //Texto del correo
   final TextEditingController emailController = TextEditingController();
+
+  //Texto de la contraseña
   final TextEditingController passwordController = TextEditingController();
+
+  //Texto del nomnbre de usuario
   final TextEditingController usernameController = TextEditingController();
 
+  //Visivilidad de la contraseña
   bool _showPassword = false;
-  //final AuthServer _auth= AuthServer();
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +45,7 @@ class _SingUpState extends State<SingUp> {
   }
 
   Column myForm(BuildContext context) {
+    //El widget actualiza el provider de LogPages. Revisar ""LogPages", Revisar "change.dart"
     final logpage = Provider.of<LogPages>(context);
     return Column(children: [
       TextField(
@@ -53,14 +61,17 @@ class _SingUpState extends State<SingUp> {
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
+                  //Cambio de visivilidad de la contraseña
                   _showPassword = !_showPassword;
                 });
               },
               child: Icon(
+                //Cambio del icono de la contraseña
                 _showPassword ? Icons.visibility : Icons.visibility_off,
               ),
             ),
           ),
+          //Visivilidad de contraseña
           obscureText: !_showPassword),
       TextField(
         controller: usernameController,
@@ -73,6 +84,7 @@ class _SingUpState extends State<SingUp> {
           children: [
             ElevatedButton(
                 onPressed: () {
+                  //Intento de crear cuenta. Revisar "Servicios/auth.dart"
                   context.read<AuthServer>().singUp(
                       email: emailController.text.trim(),
                       password: passwordController.text.trim(),
@@ -81,6 +93,7 @@ class _SingUpState extends State<SingUp> {
                 child: const Text("Sign Up")),
             ElevatedButton(
                 onPressed: () {
+                  //Cambio de pagina. Revisar "LogIn/login.dart" y "pages/change,dart" 
                   logpage.actpage=0;
                 },
                 child: const Text("Sign In")),
@@ -93,41 +106,4 @@ class _SingUpState extends State<SingUp> {
 
 
 
-/*class PasswordFormField extends StatefulWidget {
-  final TextEditingController controller;
-
-  const PasswordFormField({
-    required Key key,
-    required this.controller,
-  })  : assert(controller != null),
-        super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _PasswordFormFieldState();
-}
-
-class _PasswordFormFieldState extends State<PasswordFormField> {
-  bool _showPassword = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      decoration: InputDecoration(
-        labelText: 'Password',
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              _showPassword = !_showPassword;
-            });
-          },
-          child: Icon(
-            _showPassword ? Icons.visibility : Icons.visibility_off,
-          ),
-        ),
-      ),
-      obscureText: !_showPassword,
-    );
-  }
-}*/
 
