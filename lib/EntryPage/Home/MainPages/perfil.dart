@@ -9,8 +9,12 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Column(
+        //Todo el cuerpo. Aun no hay nada relevante a excepcion del boto de logout.
         children: [
-          ElevatedButton(onPressed: ()=>context.read<AuthServer>().singOut(), child: const Text("Log out"))
+          ElevatedButton(onPressed: 
+          //Actualiza el Provider. Revisar "Servicios/auth.dart" 
+          ()=>context.read<AuthServer>().singOut(), child: const Text("Log out")
+          )
         ],
       ),
     );
