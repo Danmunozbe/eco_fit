@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
 import 'package:eco_fit/EntryPage/Wrapper.dart';
 import 'package:eco_fit/Servicios/auth.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         ),
         //Provider para cambiar entre inciar sesion o registrarse
         ChangeNotifierProvider<LogPages>(create:(_)=>LogPages()
+        ),
+        ChangeNotifierProvider<Padres>(create:(_)=>Padres()
         ),
       ],
       child: const MaterialApp(

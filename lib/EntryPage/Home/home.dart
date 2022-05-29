@@ -40,6 +40,7 @@ class HomeSatate extends State<Home> {
         //Revisar Metodos abajo
         bottomNavigationBar: bottomBar(),
         body: _paginas[_paginaActual],
+        
       ),
     ) ;
   }
@@ -85,6 +86,7 @@ class HomeSatate extends State<Home> {
             IconButton(icon: const Icon(Icons.account_circle, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=3});},),
           ],
         ),
+         
       );
   }  
 }
