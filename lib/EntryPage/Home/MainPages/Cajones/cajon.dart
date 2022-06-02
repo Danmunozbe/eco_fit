@@ -1,9 +1,11 @@
  import 'dart:collection';
 
+import 'package:eco_fit/Implementaciones/heapsort.dart';
+
 class Cajon extends LinkedListEntry<Cajon>{
    String name;
    String imgName;
-   LinkedList<Clothes> cllist=LinkedList();
+   Heap cllist=Heap();
    Cajon(
      {
        required this.name,
@@ -28,6 +30,7 @@ class ListasCajones{
    String name;
    String imgName;
    String cajon;
+   late String pri=name;
    Clothes(
      {
        required this.name,
@@ -35,6 +38,9 @@ class ListasCajones{
        required this.cajon
      }
    );
+
+  String get prio => pri;
+  set prio (String pr)=>pri=pr;
    
  } 
 
