@@ -47,7 +47,7 @@ class Heap{
       max=lc;
     }
     int rc=rightChild(i);    
-    if(rc<size && list.elementAt(rc)!.prio.compareTo(list.elementAt(max).prio)==1){
+    if(rc<size && list.elementAt(rc).prio.compareTo(list.elementAt(max).prio)==1){
       max=rc;
     }
     if(max!=i){
