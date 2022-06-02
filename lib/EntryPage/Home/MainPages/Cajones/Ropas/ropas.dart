@@ -1,5 +1,7 @@
+import 'dart:collection';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
+import 'package:eco_fit/Implementaciones/heapsort.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +17,7 @@ class _DentroCajonState extends State<DentroCajon> {
   @override
   Widget build(BuildContext context) {
     Padres title = Provider.of<Padres>(context,listen: true);
-    List<Clothes> prendas= title.padre.cllist;
+    Heap prendas= title.padre.cllist;
     
     return MaterialApp(
       title: 'Material App',
@@ -31,7 +33,7 @@ class _DentroCajonState extends State<DentroCajon> {
           onPressed: () {
             Clothes temp= Clothes(name: "$count", imgName: title.padre.imgName, cajon: title.padre.name);
             setState((){
-              prendas.add(temp);
+              prendas.addToHeap(clothe: temp);
               count++;});
             },),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -40,22 +42,22 @@ class _DentroCajonState extends State<DentroCajon> {
   }
 }
 
-Widget inEmpty({required List list}) {
+Widget inEmpty({required Heap list}) {
   if (list.isEmpty){
     return const Text("No hay prendas");
   }else{
     return ListView.builder(
       addAutomaticKeepAlives: false,
-      itemCount: list.length,
+      itemCount: list.size,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           child: Column(
             children: [
               ListTile(
-                leading: Image.asset('assets/imgs/${list.elementAt(index).imgName}.png',
+                leading: Image.asset('assets/imgs/${list.list[index].imgName}.png',
                         fit:BoxFit.cover),
                 title:  Text(
-               list.elementAt(index).name,
+               list.list[index].name,
                   style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
           ),
               )
