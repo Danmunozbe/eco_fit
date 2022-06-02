@@ -1,26 +1,24 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'dart:math';
 
 class Heap{
   List<dynamic> A;
   late int length= A.length;
   Heap(this.A);
   
-  void BuildHeap(){
+  void buildHeap(){
       int a=((length-1)/2).round();
       for(int i=a;i>=0;i--){
-      SiftDown(i);
+      siftDown(i);
     }
   }
 
-  void SiftDown(int i){
+  void siftDown(int i){
     int max=i;
-    int lc=LeftChild(i);
+    int lc=leftChild(i);
     if(lc<length && A[lc]>A[max]){
       max=lc;
     }
-    int rc=RightChild(i);
+    int rc=rightChild(i);
     if(rc<length && A[rc]>A[max]){
       max=rc;
     }
@@ -28,36 +26,36 @@ class Heap{
       int temp=A[i];
       A[i]=A[max];
       A[max]=temp;
-      SiftDown(max);
+      siftDown(max);
     }
   }
 
   List sort(){
-    BuildHeap();
+    buildHeap();
     int a=length;
     for(int i=0;i<a-1;i++){
       int temp=A[0];
       A[0]=A[length-1];
       A[length-1]=temp;
       length--;
-      SiftDown(0);
+      siftDown(0);
     }    
     if (kDebugMode) {
       print(A);
     }
     return A;
   }
-  int LeftChild(int i){
+  int leftChild(int i){
     return 2*i+1;    
   }
 
-  int RightChild(int i){
+  int rightChild(int i){
     return 2*i+2;    
   }
   
 }
 
-List HeapSort(List A){
-  Heap h= new Heap(A);
+List heapSort(List A){
+  Heap h= Heap(A);
   return h.sort();
 }
