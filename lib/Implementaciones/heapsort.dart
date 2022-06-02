@@ -67,9 +67,6 @@ class Heap{
       list[size-1]=temp;
       size--;
       siftDown(0);
-    }    
-    if (kDebugMode) {
-      print(list);
     }
     size=list.length;
     return list;
