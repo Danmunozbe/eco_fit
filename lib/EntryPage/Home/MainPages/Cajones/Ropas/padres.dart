@@ -1,11 +1,12 @@
+import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:flutter/material.dart';
 
 class Padres extends ChangeNotifier{
-  String _padre= "HOLA";
-  String get padre{
+  late Cajon _padre;
+  Cajon get padre{
      return _padre;
    }
-   set padre(String father){
+   set padre(Cajon father){
      _padre=father;
      //Todos los que dependen de este provider se notifican y actuan segun el cambio.
      notifyListeners();

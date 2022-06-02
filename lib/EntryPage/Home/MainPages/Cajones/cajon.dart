@@ -1,38 +1,50 @@
- class Cajon{
+ import 'dart:collection';
+
+class Cajon extends LinkedListEntry<Cajon>{
    String name;
    String imgName;
-   List<Clothes> subclothes;
+   LinkedList<Clothes> cllist=LinkedList();
    Cajon(
      {
        required this.name,
        required this.imgName,
-       required this.subclothes
      }
    );
  }
+
+class ListasCajones{
+ LinkedList<ListasPrendas> cajones=LinkedList<ListasPrendas>();
+ void addPrenda({required String caj, required Clothes clothe}){
+   ListasPrendas caj = ListasPrendas();
+   cajones.add(caj);
+ }
+}
+
+ class ListasPrendas extends LinkedListEntry<ListasPrendas>{
+
+ }
  
- class Clothes {
+ class Clothes extends LinkedListEntry<Clothes> {
    String name;
    String imgName;
-   int priority;
    String cajon;
    Clothes(
      {
        required this.name,
        required this.imgName,
-       required this.priority,
        required this.cajon
      }
    );
+   
  } 
 
 
 class Utils{
   static List<Cajon> getCajones(){
     return[
-      Cajon(name:"Camisas", imgName:"camisa_cajon", subclothes: []),
-      Cajon(name:"Pantalones", imgName:"pantalon_cajon", subclothes: []),
-      Cajon(name:"Zapatos", imgName:"zapato_cajon", subclothes: []),
+      Cajon(name:"Camisas", imgName:"camisa_cajon"),
+      Cajon(name:"Pantalones", imgName:"pantalon_cajon"),
+      Cajon(name:"Zapatos", imgName:"zapato_cajon"),
     ];
   }
 }
