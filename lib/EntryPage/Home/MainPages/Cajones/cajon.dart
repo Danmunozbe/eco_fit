@@ -3,7 +3,7 @@
 class Cajon extends LinkedListEntry<Cajon>{
    String name;
    String imgName;
-   LinkedList<Clothes> cllist=LinkedList();
+   List<Clothes> cllist=[];
    Cajon(
      {
        required this.name,

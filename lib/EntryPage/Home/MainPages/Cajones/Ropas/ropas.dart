@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +11,11 @@ class DentroCajon extends StatefulWidget {
 }
 
 class _DentroCajonState extends State<DentroCajon> { 
-  
+  int count=0;
   @override
   Widget build(BuildContext context) {
     Padres title = Provider.of<Padres>(context,listen: true);
-    LinkedList<Clothes> prendas= title.padre.cllist;
+    List<Clothes> prendas= title.padre.cllist;
     
     return MaterialApp(
       title: 'Material App',
@@ -29,16 +27,25 @@ class _DentroCajonState extends State<DentroCajon> {
           child: inEmpty(list: prendas, 
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Clothes temp= Clothes(name: "$count", imgName: title.padre.imgName, cajon: title.padre.name);
+            setState((){
+              prendas.add(temp);
+              count++;});
+            },),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
 }
 
-Widget inEmpty({required LinkedList<Clothes> list}) {
+Widget inEmpty({required List list}) {
   if (list.isEmpty){
     return const Text("No hay prendas");
   }else{
     return ListView.builder(
+      addAutomaticKeepAlives: false,
       itemCount: list.length,
       itemBuilder: (BuildContext context, int index) {
         return Card(
