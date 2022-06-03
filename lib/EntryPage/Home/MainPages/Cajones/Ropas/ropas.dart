@@ -22,7 +22,7 @@ class _DentroCajonState extends State<DentroCajon> {
   @override
   Widget build(BuildContext context) {
     Padres title = Provider.of<Padres>(context,listen: true);
-    Heap prendas= title.padre.cllist;
+    List<Clothes> prendas= title.padre.cllist;
     
     return MaterialApp(
       title: 'Material App',
@@ -43,7 +43,7 @@ class _DentroCajonState extends State<DentroCajon> {
                 //Prenda a agregar
                 Clothes temp= Clothes(name: "${tests[count]}", imgName: title.padre.imgName, cajon: title.padre.name);
                 setState((){
-                  prendas.addToHeap(clothe: temp);
+                  prendas.add(temp);
                   count++;});
                 },
               child: const Icon(Icons.add) ),
@@ -52,8 +52,8 @@ class _DentroCajonState extends State<DentroCajon> {
               onPressed: () {               
                 setState((){
                   //Sortea las prendas
-                  prendas.list=prendas.sort(entry: prendas.list);
-                  ;});
+                  prendas=heapSort(prendas);
+                  });
                 },
                child: const Icon(Icons.sort_by_alpha), ),       
           ],
@@ -65,22 +65,22 @@ class _DentroCajonState extends State<DentroCajon> {
   }
 }
 
-Widget inEmpty({required Heap list}) {
+Widget inEmpty({required List<Clothes> list}) {
   if (list.isEmpty){
     return const Text("No hay prendas");
   }else{
     return ListView.builder(
       addAutomaticKeepAlives: false,
-      itemCount: list.size,
+      itemCount: list.length,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           child: Column(
             children: [
               ListTile(
-                leading: Image.asset('assets/imgs/${list.list[index].imgName}.png',
+                leading: Image.asset('assets/imgs/${list[index].imgName}.png',
                         fit:BoxFit.cover),
                 title:  Text(
-               list.list[index].name,
+               list[index].name,
                   style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
           ),
               )

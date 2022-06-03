@@ -90,7 +90,7 @@ class Heap{
   
 }
 
-List heapSort(List list){
+List<Clothes> heapSort(List<Clothes> list){
   Heap h= Heap();
-  return h.sort(entry: h.list);
+  return h.sort(entry: list);
 }
