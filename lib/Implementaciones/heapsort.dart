@@ -1,63 +1,99 @@
+import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'dart:math';
 
 class Heap{
-  List<dynamic> A;
-  late int length= A.length;
-  Heap(this.A);
+  List<Clothes> list=[];
+  late int size=0;  
   
-  void BuildHeap(){
-      int a=((length-1)/2).round();
+
+  bool get isEmpty => size==0;
+  
+  void buildHeap(){
+      int a=((size-1)/2).round();
       for(int i=a;i>=0;i--){
-      SiftDown(i);
+      siftDown(i);
     }
   }
 
-  void SiftDown(int i){
+  void remove(int i){
+    list[i].prio="∞";
+    extractMax();
+  } 
+
+  void extractMax(){
+    list[0]=list[size--];
+    siftDown(0);
+  }
+//"∞";
+  void siftUp(int i){
+    while(i>0 && list.elementAt(padre(i)).prio.compareTo(list.elementAt(i).prio)==-1){
+      Clothes temp= list[padre(i)];
+      list[padre(i)]=list[i];
+      list[i]=temp;
+      i=padre(i);
+    }
+  }
+
+  int padre(int i){
+    return ((i-1)/2).round();
+  }
+
+  void siftDown(int i){
     int max=i;
-    int lc=LeftChild(i);
-    if(lc<length && A[lc]>A[max]){
+    int lc=leftChild(i);
+    if(lc<size && list[lc].prio.compareTo(list[max].prio)==1){
       max=lc;
     }
-    int rc=RightChild(i);
-    if(rc<length && A[rc]>A[max]){
+    int rc=rightChild(i);    
+    if(rc<size && list[rc].prio.compareTo(list[max].prio)==1){
       max=rc;
     }
     if(max!=i){
-      int temp=A[i];
-      A[i]=A[max];
-      A[max]=temp;
-      SiftDown(max);
+      Clothes temp=list.elementAt(i);
+      list[i]=list[max];
+      list[max]=temp;
+      siftDown(max);
     }
   }
 
-  List sort(){
-    BuildHeap();
-    int a=length;
+  List<Clothes> sort({required List<Clothes> entry}){
+    size=entry.length;
+    list=entry;
+    buildHeap();
+    int a=entry.length;
     for(int i=0;i<a-1;i++){
-      int temp=A[0];
-      A[0]=A[length-1];
-      A[length-1]=temp;
-      length--;
-      SiftDown(0);
+      var temp=entry[0];
+      list[0]=list[size-1];
+      list[size-1]=temp;
+      size--;
+      siftDown(0);
     }    
     if (kDebugMode) {
-      print(A);
+      print(list);
     }
-    return A;
+    size=list.length;
+    return list;
   }
-  int LeftChild(int i){
+  int leftChild(int i){
     return 2*i+1;    
   }
 
-  int RightChild(int i){
+  int rightChild(int i){
     return 2*i+2;    
+  }
+  void addToHeap({required clothe}){
+    if(size==list.length){
+      list.add(clothe);
+    }else{
+      list[size]=clothe;
+    }    
+    size++;
+    siftUp(size-1);
   }
   
 }
 
-List HeapSort(List A){
-  Heap h= new Heap(A);
-  return h.sort();
+List heapSort(List list){
+  Heap h= Heap();
+  return h.sort(entry: h.list);
 }
