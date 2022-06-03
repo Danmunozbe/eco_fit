@@ -2,10 +2,9 @@ import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:flutter/foundation.dart';
 
 class Heap{
-  List<Clothes> list;
-  late int size=list.length;
+  List<Clothes> list=[];
+  late int size=0;  
   
-  Heap({this.list=const []});
 
   bool get isEmpty => size==0;
   
@@ -27,7 +26,7 @@ class Heap{
   }
 //"∞";
   void siftUp(int i){
-    while(list.elementAt(padre(i)).prio.compareTo(list.elementAt(1).prio)>1 && i>0){
+    while(i>0 && list.elementAt(padre(i)).prio.compareTo(list.elementAt(1).prio)>1){
       Clothes temp= list[padre(i)];
       list[padre(i)]=list[i];
       list[i]=temp;
@@ -80,7 +79,12 @@ class Heap{
     return 2*i+2;    
   }
   void addToHeap({required clothe}){
-    list[size++]=clothe;
+    if(size==list.length){
+      list.add(clothe);
+    }else{
+      list[size]=clothe;
+    }    
+    size++;
     siftUp(size-1);
   }
   
