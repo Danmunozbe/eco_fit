@@ -21,12 +21,12 @@ class Heap{
   } 
 
   void extractMax(){
-    list[1]=list[size--];
-    siftDown(1);
+    list[0]=list[size--];
+    siftDown(0);
   }
 //"∞";
   void siftUp(int i){
-    while(i>0 && list.elementAt(padre(i)).prio.compareTo(list.elementAt(1).prio)>1){
+    while(i>0 && list.elementAt(padre(i)).prio.compareTo(list.elementAt(i).prio)==-1){
       Clothes temp= list[padre(i)];
       list[padre(i)]=list[i];
       list[i]=temp;
@@ -41,11 +41,11 @@ class Heap{
   void siftDown(int i){
     int max=i;
     int lc=leftChild(i);
-    if(lc<size && list.elementAt(lc).prio.compareTo(list.elementAt(max).prio)==1){
+    if(lc<size && list[lc].prio.compareTo(list[max].prio)==1){
       max=lc;
     }
     int rc=rightChild(i);    
-    if(rc<size && list.elementAt(rc).prio.compareTo(list.elementAt(max).prio)==1){
+    if(rc<size && list[rc].prio.compareTo(list[max].prio)==1){
       max=rc;
     }
     if(max!=i){
@@ -56,7 +56,9 @@ class Heap{
     }
   }
 
-  List sort({required List entry}){
+  List<Clothes> sort({required List<Clothes> entry}){
+    size=entry.length;
+    list=entry;
     buildHeap();
     int a=entry.length;
     for(int i=0;i<a-1;i++){
@@ -69,6 +71,7 @@ class Heap{
     if (kDebugMode) {
       print(list);
     }
+    size=list.length;
     return list;
   }
   int leftChild(int i){

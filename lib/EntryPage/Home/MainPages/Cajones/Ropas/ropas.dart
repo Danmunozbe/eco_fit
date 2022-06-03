@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:math';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:eco_fit/Implementaciones/heapsort.dart';
@@ -13,6 +14,10 @@ class DentroCajon extends StatefulWidget {
 }
 
 class _DentroCajonState extends State<DentroCajon> { 
+  //Nombres de las prendas de pruebas 
+  //Puedes cambiarlo para hacer pruebas con nombres aleatoreos
+  //Pero entonces Cambia en la linea "44" lo que esta desdepues de "names:"
+  final List<int> tests=[3,6,2,8,7];
   int count=0;
   @override
   Widget build(BuildContext context) {
@@ -29,14 +34,32 @@ class _DentroCajonState extends State<DentroCajon> {
           child: inEmpty(list: prendas, 
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Clothes temp= Clothes(name: "$count", imgName: title.padre.imgName, cajon: title.padre.name);
-            setState((){
-              prendas.addToHeap(clothe: temp);
-              count++;});
-            },),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              heroTag: "ADD",
+              onPressed: () {
+                //Prenda a agregar
+                Clothes temp= Clothes(name: "${tests[count]}", imgName: title.padre.imgName, cajon: title.padre.name);
+                setState((){
+                  prendas.addToHeap(clothe: temp);
+                  count++;});
+                },
+              child: const Icon(Icons.add) ),
+            FloatingActionButton(
+              heroTag: "SORT",
+              onPressed: () {               
+                setState((){
+                  //Sortea las prendas
+                  prendas.list=prendas.sort(entry: prendas.list);
+                  ;});
+                },
+               child: const Icon(Icons.sort_by_alpha), ),       
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        
       ),
     );
   }
