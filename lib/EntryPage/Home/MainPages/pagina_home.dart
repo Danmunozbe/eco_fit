@@ -5,9 +5,31 @@ class PaginaHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      //Todo el cuerpo. Aun no hay nada relevante
-      child: Text("Home",style: TextStyle(fontSize: 30),),
+    return Center(
+      child: Column(
+        children: <Widget>[
+          const Text('Deliver features faster'),
+          const Text('Craft beautiful UIs'),
+          Row(
+            children: <Widget>[
+              Expanded(
+                  child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'search',
+                ),
+              )),
+              IconButton(onPressed: () => {}, icon: Icon(Icons.search)),
+            ],
+          ),
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.contain, // otherwise the logo will be tiny
+              child: FlutterLogo(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
