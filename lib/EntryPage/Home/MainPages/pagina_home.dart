@@ -8,21 +8,22 @@ class PaginaHome extends StatelessWidget {
     return Center(
       child: Column(
         children: <Widget>[
-          const Text('Deliver features faster'),
-          const Text('Craft beautiful UIs'),
-          Row(
-            children: <Widget>[
-              Expanded(
-                  child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'search',
-                ),
-              )),
-              IconButton(onPressed: () => {}, icon: Icon(Icons.search)),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                const Expanded(
+                    child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'search',
+                  ),
+                )),
+                IconButton(onPressed: () => {}, icon: const Icon(Icons.search)),
+              ],
+            ),
           ),
-          Expanded(
+          const Expanded(
             child: FittedBox(
               fit: BoxFit.contain, // otherwise the logo will be tiny
               child: FlutterLogo(),
