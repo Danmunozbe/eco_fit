@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
-import 'package:eco_fit/EntryPage/Wrapper.dart';
+import 'package:eco_fit/EntryPage/wrapper.dart';
 import 'package:eco_fit/Servicios/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

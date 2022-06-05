@@ -11,10 +11,11 @@ class Profile extends StatelessWidget {
       body: Column(
         //Todo el cuerpo. Aun no hay nada relevante a excepcion del boto de logout.
         children: [
-          ElevatedButton(onPressed: 
+          ElevatedButton(
           //Actualiza el Provider. Revisar "Servicios/auth.dart" 
-          ()=>context.read<AuthServer>().singOut(), child: const Text("Log out")
-          )
+          onPressed: () => context.read<AuthServer>().singOut(), child: const Text("Log out")
+          ),
+          
         ],
       ),
     );

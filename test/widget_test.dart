@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:eco_fit/EntryPage/Home/home.dart';
-import 'package:eco_fit/EntryPage/Wrapper.dart';
+import 'package:eco_fit/EntryPage/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:eco_fit/main.dart';

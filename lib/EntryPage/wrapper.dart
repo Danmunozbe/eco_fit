@@ -14,6 +14,9 @@ class Wrapper extends StatelessWidget {
     //Usael provider para verificar si hubo algun cambio en el usuario de firebase actual
     final firebaseUser = Provider.of<User?>(context,listen: true);
     //Revisar "Home/home.dart" y "Login/login.dart"
+    //se mira si el usuario es diferente de nulo, o en otras
+    //palabras si está autenticado, luego se redirige a
+    //Home o en otro caso a Log
     return firebaseUser != null ? const Home():const Log();
   }
 }

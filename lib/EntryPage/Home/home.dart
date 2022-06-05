@@ -27,8 +27,8 @@ class HomeSatate extends State<Home> {
       home: Scaffold(
         
         appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text("Eco-Fit"),
+          backgroundColor: Colors.grey[700],
+          title: const Text("Eco Fit"),
           ),
 
         //Revisar metodo abajo        
@@ -39,6 +39,9 @@ class HomeSatate extends State<Home> {
         
         //Revisar Metodos abajo
         bottomNavigationBar: bottomBar(),
+        //con esto rendereriza en pantalla la página asociada al botón que
+        //ha sido oprimido, ej: si oprimimos el botón de home la página
+        //actual está en el índice 0 que corresponde a PaginaHome()
         body: _paginas[_paginaActual],
         
       ),
@@ -50,9 +53,10 @@ class HomeSatate extends State<Home> {
     return FloatingActionButton( 
           onPressed: (){
             //Lo que se realiza al clickearlo (No hay nada relevante aun)
-             showDialog(context: context, builder: (context)=>AlertDialog(
-               title: const Text("XDDD"
-               ),
+             showDialog(
+               context: context, 
+               builder: (context) => AlertDialog(
+               title: const Text("XDDD"),
                actions: [
                  TextButton(onPressed: ()=>Navigator.pop(context), child: const Text("OK lol")
                  )
@@ -60,19 +64,15 @@ class HomeSatate extends State<Home> {
               )
              );
           },
-          child: const Icon(Icons.add_rounded
-          ), 
+          child: const Icon(Icons.add_rounded), 
       );
   }
 
   //Barra Inferior
   BottomAppBar bottomBar() {
     return BottomAppBar( //bottom navigation bar on scaffold
-        color:const Color.fromARGB(185, 206, 209, 8
-        ),
-        shape: const CircularNotchedRectangle(
-
-        ), //shape of notch
+        color: Colors.grey[700],
+        shape: const CircularNotchedRectangle(), //shape of notch
         notchMargin: 5,
         child: Row( 
           mainAxisSize: MainAxisSize.max,
@@ -80,10 +80,53 @@ class HomeSatate extends State<Home> {
 
           //Botones de la barra. cada uno de ellos cambia la pagina acuatual con "setState()"
           children: <Widget>[
-            IconButton(icon: const Icon(Icons.home, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=0});},),
-            IconButton(icon: const Icon(Icons.all_inbox, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=1});},),
-            IconButton(icon: const Icon(Icons.shop, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=2});},),
-            IconButton(icon: const Icon(Icons.account_circle, color: Colors.white,), onPressed: () {setState(()=>{_paginaActual=3});},),
+            IconButton(
+              icon: const Icon(Icons.home, color: Colors.greenAccent,),autofocus: true, 
+              enableFeedback: true,
+              focusColor: Colors.greenAccent[400], 
+              onPressed: () {
+                setState(
+                  () => {
+                    _paginaActual=0
+                  }
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.all_inbox, color: Colors.greenAccent,),
+              enableFeedback: true, 
+              focusColor: Colors.greenAccent[400], 
+              onPressed: () {
+                setState(
+                  () => {
+                    _paginaActual=1
+                  }
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.shop, color: Colors.greenAccent,),enableFeedback: true,
+              focusColor: Colors.greenAccent[400], 
+              onPressed: () {
+                setState(
+                  () => {
+                    _paginaActual=2
+                  }
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.account_circle, color: Colors.greenAccent,),
+              enableFeedback: true,
+              focusColor: Colors.greenAccent[400], 
+              onPressed: () {
+                setState(
+                  () => {
+                    _paginaActual=3
+                  }
+                );
+              },
+            ),
           ],
         ),
          
