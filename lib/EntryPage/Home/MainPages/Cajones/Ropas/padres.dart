@@ -2,7 +2,7 @@ import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:flutter/material.dart';
 
 class Padres extends ChangeNotifier{
-  late Cajon _padre;
+  Cajon _padre=Utils.getCajones()[0];
   Cajon get padre{
      return _padre;
    }
@@ -13,3 +13,6 @@ class Padres extends ChangeNotifier{
    }
 
 }
+
+
+

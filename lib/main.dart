@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
+import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/ropas.dart';
 import 'package:eco_fit/EntryPage/LogIn/pages/change.dart';
 import 'package:eco_fit/EntryPage/Wrapper.dart';
 import 'package:eco_fit/Servicios/auth.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         //Menu de entrada, revisar "EntryPage/wrapper.dart""
-        home: Wrapper(),
+        home: DentroCajon(),
       ),
     );
   }

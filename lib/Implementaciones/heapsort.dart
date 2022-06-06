@@ -90,6 +90,11 @@ class Heap{
     size++;
     siftUp(size-1);
   }
+
+  void clear() {
+    list.clear();
+    size=list.length;
+  }
   
 }
 
