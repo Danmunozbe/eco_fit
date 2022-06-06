@@ -12,10 +12,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   //inicializa firebase
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -26,11 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [
         //Provider detectar el cambio de usuario
         //Revisar "Servicios/auth.dart"
-        Provider<AuthServer>(create:(_)=>AuthServer(FirebaseAuth.instance),
-        ),
-        //Stream de datos del usurio, es decir identificar los datos de llegada
-        StreamProvider(create: (context)=>context.read<AuthServer>().authstatechanges, initialData: null
-        ),
+        
         //Provider para cambiar entre inciar sesion o registrarse
         ChangeNotifierProvider<LogPages>(create:(_)=>LogPages()
         ),
