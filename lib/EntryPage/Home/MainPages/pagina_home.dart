@@ -23,11 +23,129 @@ class PaginaHome extends StatelessWidget {
               ],
             ),
           ),
-          const Expanded(
-            child: FittedBox(
-              fit: BoxFit.contain, // otherwise the logo will be tiny
-              child: FlutterLogo(),
-            ),
+          GridView.count(
+            primary: false,
+            padding: const EdgeInsets.all(20),
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
+            crossAxisCount: 3,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[100],
+                child: Image.asset(
+                  "assets/imgs/clothes_1.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[200],
+                  child: Image.asset(
+                    "assets/imgs/clothes_2.png",
+                    fit: BoxFit.contain,
+                    height: 40,
+                  )),
+              Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[300],
+                  child: Image.asset(
+                    "assets/imgs/clothes_3.png",
+                    fit: BoxFit.contain,
+                    height: 40,
+                  )),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[400],
+                child: Image.asset(
+                  "assets/imgs/clothes_4.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[500],
+                child: Image.asset(
+                  "assets/imgs/clothes_5.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_6.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_7.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_8.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_9.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_10.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_11.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_1.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                color: Colors.teal[600],
+                child: Image.asset(
+                  "assets/imgs/clothes_4.png",
+                  fit: BoxFit.contain,
+                  height: 40,
+                ),
+              ),
+            ],
           ),
         ],
       ),
