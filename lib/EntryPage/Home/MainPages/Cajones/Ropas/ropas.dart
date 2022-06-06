@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:math';
+import 'package:random_string/random_string.dart';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
 import 'package:eco_fit/Implementaciones/heapsort.dart';
@@ -17,7 +18,9 @@ class _DentroCajonState extends State<DentroCajon> {
   //Nombres de las prendas de pruebas 
   //Puedes cambiarlo para hacer pruebas con nombres aleatoreos
   //Pero entonces Cambia en la linea "44" lo que esta desdepues de "names:"
-  final List<int> tests=[3,6,2,8,7];
+  List<String> tests=[];
+  
+
   int count=0;
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,9 @@ class _DentroCajonState extends State<DentroCajon> {
               heroTag: "ADD",
               onPressed: () {
                 //Prenda a agregar
-                Clothes temp= Clothes(name: "${tests[count]}", imgName: title.padre.imgName, cajon: title.padre.name);
+                String tempName= randomString(5);
+                tests.add(tempName);
+                Clothes temp= Clothes(name: tests[count], imgName: title.padre.imgName, cajon: title.padre.name);
                 setState((){
                   prendas.add(temp);
                   count++;});
@@ -55,7 +60,17 @@ class _DentroCajonState extends State<DentroCajon> {
                   prendas=heapSort(prendas);
                   });
                 },
-               child: const Icon(Icons.sort_by_alpha), ),       
+               child: const Icon(Icons.sort_by_alpha), ),
+               FloatingActionButton(
+              heroTag: "Supress",
+              onPressed: () {               
+                setState((){
+                  //Limpia la lista
+                  prendas.clear();
+                  count=0;
+                  });
+                },
+               child: const Icon(Icons.clear), ),    
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
