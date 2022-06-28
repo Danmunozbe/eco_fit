@@ -16,7 +16,6 @@ class _ArmarioState extends State<Armario> {
 
   @override
   Widget build(BuildContext context) {
-    final padre = Provider.of<Padres>(context);
     return Scaffold(
       body: Column(
         //centrados y expandidos para que ocpen la pantalla
@@ -29,9 +28,8 @@ class _ArmarioState extends State<Armario> {
               //Que sucede al hacer click
               return GestureDetector(
                 onTap: (() {
-                  padre.padre=cajones[index];
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: ((context) => const DentroCajon())
+                    MaterialPageRoute(builder: ((context) => DentroCajon(title: cajones[index],))
                   ));
                 }),
                 child: Container(
