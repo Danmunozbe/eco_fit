@@ -5,7 +5,7 @@ import 'package:eco_fit/Implementaciones/heapsort.dart';
 class Cajon extends LinkedListEntry<Cajon>{
    String name;
    String imgName;
-   Heap cllist=Heap();
+   List<Clothes> cllist=[];
    Cajon(
      {
        required this.name,
@@ -46,11 +46,16 @@ class ListasCajones{
 
 
 class Utils{
+  static Cajon camisas=Cajon(name:"Camisas", imgName:"camisa_cajon");
+  static Cajon pantalons=Cajon(name:"Pantalones", imgName:"pantalon_cajon");
+  static Cajon zapatos=Cajon(name:"Zapatos", imgName:"zapato_cajon");
+  
+    
   static List<Cajon> getCajones(){
     return[
-      Cajon(name:"Camisas", imgName:"camisa_cajon"),
-      Cajon(name:"Pantalones", imgName:"pantalon_cajon"),
-      Cajon(name:"Zapatos", imgName:"zapato_cajon"),
-    ];
+      camisas,
+      pantalons,
+      zapatos
+    ];      
   }
 }

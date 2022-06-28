@@ -88,9 +88,14 @@ class Heap{
     siftUp(size-1);
   }
   
+  void addList({required List<Clothes> entryList}){
+    list=list+entryList;
+  }
+
 }
 
-List heapSort(List list){
+List<Clothes> heapSort({required List<Clothes> list}){
   Heap h= Heap();
+  h.addList(entryList: list);
   return h.sort(entry: h.list);
 }

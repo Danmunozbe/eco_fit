@@ -1,38 +1,71 @@
-import 'dart:collection';
-import 'dart:math';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/Ropas/padres.dart';
 import 'package:eco_fit/EntryPage/Home/MainPages/Cajones/cajon.dart';
-import 'package:eco_fit/Implementaciones/heapsort.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import "package:eco_fit/Implementaciones/heapsort.dart";
+import 'dart:math';
 
 class DentroCajon extends StatefulWidget {
-   const DentroCajon({Key? key}) : super(key: key);
+  final Cajon title;
+   const DentroCajon({Key? key,required this.title}) : super(key: key);
 
   @override
   State<DentroCajon> createState() => _DentroCajonState();
 }
 
-class _DentroCajonState extends State<DentroCajon> { 
-  //Nombres de las prendas de pruebas 
-  //Puedes cambiarlo para hacer pruebas con nombres aleatoreos
-  //Pero entonces Cambia en la linea "44" lo que esta desdepues de "names:"
-  final List<int> tests=[3,6,2,8,7];
+class _DentroCajonState extends State<DentroCajon> {
+  late List<Clothes>_foundUsers=widget.title.cllist;
   int count=0;
   @override
   Widget build(BuildContext context) {
-    Padres title = Provider.of<Padres>(context,listen: true);
-    Heap prendas= title.padre.cllist;
+    List<Clothes> prendas= widget.title.cllist;
     
+
+    void _runFilter(String enteredKeyword) {
+    List<Clothes> results = [];
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = prendas;
+    } else {
+      results = prendas
+          .where((user) =>
+              user.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+
+    // Refresh the UI
+    setState(() {
+      _foundUsers = results;
+      });
+    }    
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text(title.padre.name),
+          title: Text(widget.title.name),
         ),
-        body: Center(
-          child: inEmpty(list: prendas, 
-          ),
+        body: Center(            
+          child: Column(
+            children: [
+              const SizedBox(
+              height: 20,
+            ),
+            TextField(
+                onChanged: (value) => _runFilter(value),
+                decoration: const InputDecoration(
+                    labelText: 'Search', suffixIcon: Icon(Icons.search)),
+              ),
+             const SizedBox(
+              height: 20,
+            ),
+              Expanded(
+                child: inEmpty(list: _foundUsers,
+                ),
+              ),
+            
+            ],
+          )
         ),
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -41,9 +74,10 @@ class _DentroCajonState extends State<DentroCajon> {
               heroTag: "ADD",
               onPressed: () {
                 //Prenda a agregar
-                Clothes temp= Clothes(name: "${tests[count]}", imgName: title.padre.imgName, cajon: title.padre.name);
+                Clothes temp= Clothes(name: "${Random().nextInt(100)}", imgName: widget.title.imgName, cajon: widget.title.name);
                 setState((){
-                  prendas.addToHeap(clothe: temp);
+                  prendas.add(temp);
+                  _foundUsers=prendas;
                   count++;});
                 },
               child: const Icon(Icons.add) ),
@@ -52,8 +86,8 @@ class _DentroCajonState extends State<DentroCajon> {
               onPressed: () {               
                 setState((){
                   //Sortea las prendas
-                  prendas.list=prendas.sort(entry: prendas.list);
-                  ;});
+                  _foundUsers=heapSort(list: _foundUsers);
+                  });
                 },
                child: const Icon(Icons.sort_by_alpha), ),       
           ],
@@ -63,24 +97,29 @@ class _DentroCajonState extends State<DentroCajon> {
       ),
     );
   }
+
+  
 }
 
-Widget inEmpty({required Heap list}) {
+
+
+
+Widget inEmpty({required List list}) {
   if (list.isEmpty){
     return const Text("No hay prendas");
   }else{
     return ListView.builder(
       addAutomaticKeepAlives: false,
-      itemCount: list.size,
+      itemCount: list.length,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           child: Column(
             children: [
               ListTile(
-                leading: Image.asset('assets/imgs/${list.list[index].imgName}.png',
+                leading: Image.asset('assets/imgs/${list[index].imgName}.png',
                         fit:BoxFit.cover),
                 title:  Text(
-               list.list[index].name,
+               list[index].name,
                   style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
           ),
               )
